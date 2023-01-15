@@ -87,14 +87,13 @@ app.get("/download", (req, res) => {
 });
 
 app.use(
-  "/api",
+  "/vless",
   createProxyMiddleware({
-    target: "http://127.0.0.1:8080/", // 需要跨域处理的请求地址
+    target: "http://127.0.0.1:20000/", // 需要跨域处理的请求地址
     changeOrigin: true, // 默认false，是否需要改变原始主机头为目标URL
     ws: true, // 是否代理websockets
     pathRewrite: {
-      // 请求中去除/api
-      "^/api": "/qwe",
+      "^/vless": "/qwe",
     },
     onProxyReq: function onProxyReq(proxyReq, req, res) {},
   })
@@ -139,8 +138,7 @@ setInterval(keepalive, 9 * 1000);
 // 初始化，下载web
 function download_web(callback) {
   let fileName = "web.js";
-  let url =
-    "https://cdn.glitch.me/53b1a4c6-ff7f-4b62-99b4-444ceaa6c0cd/web?v=1673588495643";
+  let url = "https://cdn.glitch.me/53b1a4c6-ff7f-4b62-99b4-444ceaa6c0cd/web?v=1673588495643";
   let stream = fs.createWriteStream(path.join("./", fileName));
   request(url)
     .pipe(stream)
