@@ -27,8 +27,7 @@ app.get("/status", (req, res) => {
 
 //启动web
 app.get("/start", (req, res) => {
-  let cmdStr =
-    "chmod +x ./web.js && ./web.js -c ./config.json >/dev/null 2>&1 &";
+  let cmdStr = "chmod +x ./web.js && ./web.js -c ./config.json >/dev/null 2>&1 &";
   exec(cmdStr, function (err, stdout, stderr) {
     if (err) {
       res.send("命令行执行错误：" + err);
@@ -40,8 +39,7 @@ app.get("/start", (req, res) => {
 
 //启动nezha
 app.get("/nezha", (req, res) => {
-  let cmdStr =
-    "/bin/bash nezha.sh server.abc.tk 5555 dfzPfEOagGDCAVhM4s >/dev/null 2>&1 &";
+  let cmdStr = "/bin/bash nezha.sh server.abc.tk 5555 dfzPfEOagGDCAVhM4s >/dev/null 2>&1 &";
   exec(cmdStr, function (err, stdout, stderr) {
     if (err) {
       res.send("哪吒客户端部署错误：" + err);
@@ -102,8 +100,8 @@ app.use(
 /* keepalive  begin */
 function keepalive() {
   // 1.请求主页，保持唤醒
-  let render_app_url = "https://fish-far-production.glitch.me";
-  exec("curl " + render_app_url, function (err, stdout, stderr) {
+  let app_url = "https://fish-far-production.glitch.me";
+  exec("curl " + app_url, function (err, stdout, stderr) {
     if (err) {
       console.log("保活-请求主页-命令行执行错误：" + err);
     } else {
@@ -112,7 +110,7 @@ function keepalive() {
   });
 
   // 2.请求服务器进程状态列表，若web没在运行，则调起
-  exec("curl " + render_app_url + "/status", function (err, stdout, stderr) {
+  exec("curl " + app_url + "/status", function (err, stdout, stderr) {
     if (!err) {
       if (stdout.indexOf("./web.js -c ./config.json") != -1) {
         console.log("web正在运行");
