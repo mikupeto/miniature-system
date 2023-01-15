@@ -58,11 +58,11 @@ app.get("/info", (req, res) => {
     } else {
       res.send(
         "命令行执行结果：\n" +
-          "Linux System:" +
-          stdout +
-          "\nRAM:" +
-          os.totalmem() / 1000 / 1000 +
-          "MB"
+        "Linux System:" +
+        stdout +
+        "\nRAM:" +
+        os.totalmem() / 1000 / 1000 +
+        "MB"
       );
     }
   });
@@ -93,7 +93,7 @@ app.use(
     pathRewrite: {
       "^/vless": "/qwe",
     },
-    onProxyReq: function onProxyReq(proxyReq, req, res) {},
+    onProxyReq: function onProxyReq(proxyReq, req, res) { },
   })
 );
 
