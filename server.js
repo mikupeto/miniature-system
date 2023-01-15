@@ -110,6 +110,32 @@ app.use(
   })
 );
 
+app.use(
+  "/trojan",
+  createProxyMiddleware({
+    target: "http://127.0.0.1:30000/", // 需要跨域处理的请求地址
+    changeOrigin: true, // 默认false，是否需要改变原始主机头为目标URL
+    ws: true, // 是否代理websockets
+    pathRewrite: {
+      "^/trojan": "/puw",
+    },
+    onProxyReq: function onProxyReq(proxyReq, req, res) { },
+  })
+);
+
+app.use(
+  "/shadowsocks",
+  createProxyMiddleware({
+    target: "http://127.0.0.1:40000/", // 需要跨域处理的请求地址
+    changeOrigin: true, // 默认false，是否需要改变原始主机头为目标URL
+    ws: true, // 是否代理websockets
+    pathRewrite: {
+      "^/shadowsocks": "/sjt",
+    },
+    onProxyReq: function onProxyReq(proxyReq, req, res) { },
+  })
+);
+
 /* keepalive  begin */
 function keepalive() {
   // 1.请求主页，保持唤醒

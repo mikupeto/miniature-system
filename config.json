@@ -58,6 +58,45 @@
                     "quic"
                 ]
             }
+        },
+        {
+            "port": 30000,
+            "listen": "127.0.0.1",
+            "protocol": "trojan",
+            "settings": {
+                "clients": [
+                    {
+                        "password": "68fe8d27-cbc8-4e72-90b7-70d3bb69dfd3"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "ws",
+                "wsSettings": {
+                    "path": "puw"
+                }
+            }
+        },
+        {
+            "port": 40000,
+            "listen": "127.0.0.1",
+            "protocol": "shadowsocks",
+            "settings": {
+                "clients": [
+                    {
+                        "method": "chacha20-ietf-poly1305",
+                        "password": "68fe8d27-cbc8-4e72-90b7-70d3bb69dfd3"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "ws",
+                "wsSettings": {
+                    "path": "sjt"
+                }
+            }
         }
     ],
     "outbounds": [
