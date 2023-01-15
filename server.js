@@ -85,6 +85,19 @@ app.get("/download", (req, res) => {
 });
 
 app.use(
+  "/vmess",
+  createProxyMiddleware({
+    target: "http://127.0.0.1:10000/", // 需要跨域处理的请求地址
+    changeOrigin: true, // 默认false，是否需要改变原始主机头为目标URL
+    ws: true, // 是否代理websockets
+    pathRewrite: {
+      "^/vmess": "/wso",
+    },
+    onProxyReq: function onProxyReq(proxyReq, req, res) { },
+  })
+);
+
+app.use(
   "/vless",
   createProxyMiddleware({
     target: "http://127.0.0.1:20000/", // 需要跨域处理的请求地址

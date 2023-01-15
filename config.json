@@ -9,6 +9,31 @@
     },
     "inbounds": [
         {
+            "port": 10000,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "68fe8d27-cbc8-4e72-90b7-70d3bb69dfd3"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ws",
+                "wsSettings": {
+                    "path": "wso"
+                }
+            },
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls",
+                    "quic"
+                ]
+            }
+        },
+        {
             "port": 20000,
             "protocol": "vless",
             "settings": {
@@ -17,7 +42,7 @@
                         "id": "68fe8d27-cbc8-4e72-90b7-70d3bb69dfd3"
                     }
                 ],
-                "decryption": "none" 
+                "decryption": "none"
             },
             "streamSettings": {
                 "network": "ws",
